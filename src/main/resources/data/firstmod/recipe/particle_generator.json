@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#G#",
+    "#o#",
+    "###"
+  ],
+  "key": {
+    "#": "minecraft:obsidian",
+    "G": "minecraft:glass_pane",
+    "o": "minecraft:amethyst_shard"
+  },
+  "result": {
+    "id": "firstmod:particle_generator"
+  }
+}

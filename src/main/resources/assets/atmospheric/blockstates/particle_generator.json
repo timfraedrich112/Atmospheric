@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "activated=false": {
+      "model": "atmospheric:block/particle_generator_off"
+    },
+    "activated=true": {
+      "model": "atmospheric:block/particle_generator_on"
+    }
+  }
+}

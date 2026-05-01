@@ -1,0 +1,6 @@
+{
+  "model": {
+    "type": "minecraft:model",
+    "model": "atmospheric:block/particle_generator_off"
+  }
+}
