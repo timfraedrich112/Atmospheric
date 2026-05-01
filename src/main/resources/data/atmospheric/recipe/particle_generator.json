@@ -11,6 +11,6 @@
     "o": "minecraft:amethyst_shard"
   },
   "result": {
-    "id": "firstmod:particle_generator"
+    "id": "atmospheric:particle_generator"
   }
 }

@@ -1,5 +1,6 @@
 package mitmit.atmospheric;
 
+import mitmit.atmospheric.BlockEntities.ModBlockEntities;
 import mitmit.atmospheric.Blocks.ModBlocks;
 import mitmit.atmospheric.Items.ModItems;
 import net.fabricmc.api.ModInitializer;
@@ -22,6 +23,7 @@ public class Atmospheric implements ModInitializer {
 		// Proceed with mild caution.
 		ModItems.initialize();
 		ModBlocks.initialize();
+		ModBlockEntities.initialize();
 		LOGGER.info("Hello Fabric world!");
 	}
 }
