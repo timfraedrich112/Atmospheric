@@ -21,6 +21,7 @@ public class Atmospheric implements ModInitializer {
 		ModItems.initialize();
 		ModBlocks.initialize();
 		ModBlockEntities.initialize();
+		ModMenuType.initialize();
 		LOGGER.info("Hello Fabric world!");
 	}
 }

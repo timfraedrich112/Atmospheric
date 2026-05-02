@@ -16,4 +16,7 @@ public class ModMenuType {
     ) {
         return Registry.register(BuiltInRegistries.MENU, name, new MenuType<>(constructor, FeatureFlagSet.of()));
     }
+
+    public static void initialize() {
+    }
 }
