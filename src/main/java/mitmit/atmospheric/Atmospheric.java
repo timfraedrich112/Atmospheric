@@ -1,8 +1,5 @@
 package mitmit.atmospheric;
 
-import mitmit.atmospheric.BlockEntities.ModBlockEntities;
-import mitmit.atmospheric.Blocks.ModBlocks;
-import mitmit.atmospheric.Items.ModItems;
 import net.fabricmc.api.ModInitializer;
 
 import org.slf4j.Logger;

@@ -1,8 +1,7 @@
-package mitmit.atmospheric.Blocks;
+package mitmit.atmospheric.ParticleGenerator;
 
 import com.mojang.serialization.MapCodec;
-import mitmit.atmospheric.BlockEntities.ModBlockEntities;
-import mitmit.atmospheric.BlockEntities.ParticleGeneratorEntity;
+import mitmit.atmospheric.ModBlockEntities;
 import net.minecraft.core.BlockPos;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -17,8 +16,6 @@ import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
-import net.minecraft.world.level.storage.ValueInput;
-import net.minecraft.world.level.storage.ValueOutput;
 import net.minecraft.world.phys.BlockHitResult;
 import org.jetbrains.annotations.Nullable;
 
@@ -54,15 +51,14 @@ public class ParticleGenerator extends BaseEntityBlock {
 
     @Override
     protected InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player, BlockHitResult hitResult) {
-        if (!(level.getBlockEntity(pos) instanceof ParticleGeneratorEntity particleGeneratorEntity)) {
-            return super.useWithoutItem(state, level, pos, player, hitResult);
-        } else if (!player.getAbilities().mayBuild) {
+        if (!player.getAbilities().mayBuild) {
             return InteractionResult.PASS;
-        } else {
-            level.setBlockAndUpdate(pos, state.setValue(ACTIVATED, !state.getValue(ACTIVATED)));
-            level.playSound(player, pos, SoundEvents.BAMBOO_WOOD_BUTTON_CLICK_OFF, SoundSource.BLOCKS, 1.0F, 1.0F);
-
-            return InteractionResult.SUCCESS;
         }
+        if (!level.isClientSide() && level.getBlockEntity(pos) instanceof ParticleGeneratorEntity particleGeneratorEntity) {
+            player.openMenu(particleGeneratorEntity);
+            level.playSound(player, pos, SoundEvents.BAMBOO_WOOD_BUTTON_CLICK_OFF, SoundSource.BLOCKS, 1.0F, 1.0F);
+            //level.setBlockAndUpdate(pos, state.setValue(ACTIVATED, !state.getValue(ACTIVATED)));
+        }
+        return InteractionResult.PASS;
     }
 }

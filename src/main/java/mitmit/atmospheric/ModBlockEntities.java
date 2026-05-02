@@ -1,14 +1,10 @@
-package mitmit.atmospheric.BlockEntities;
+package mitmit.atmospheric;
 
-import mitmit.atmospheric.Atmospheric;
-import mitmit.atmospheric.Blocks.ModBlocks;
-import mitmit.atmospheric.Blocks.ParticleGenerator;
-import net.fabricmc.fabric.api.creativetab.v1.CreativeModeTabEvents;
+import mitmit.atmospheric.ParticleGenerator.ParticleGeneratorEntity;
 import net.fabricmc.fabric.api.object.builder.v1.block.entity.FabricBlockEntityTypeBuilder;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.Identifier;
-import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;

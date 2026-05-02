@@ -1,6 +1,6 @@
-package mitmit.atmospheric.Blocks;
+package mitmit.atmospheric;
 
-import mitmit.atmospheric.Atmospheric;
+import mitmit.atmospheric.ParticleGenerator.ParticleGenerator;
 import net.fabricmc.fabric.api.creativetab.v1.CreativeModeTabEvents;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
