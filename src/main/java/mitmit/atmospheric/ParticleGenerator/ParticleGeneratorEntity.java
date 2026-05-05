@@ -4,6 +4,7 @@ import mitmit.atmospheric.ModBlockEntities;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.NonNullList;
+import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.Container;
@@ -31,6 +32,7 @@ public class ParticleGeneratorEntity extends BlockEntity implements Container, M
     public static void tick(Level level, BlockPos blockPos, BlockState blockState, ParticleGeneratorEntity entity) {
         //entity.ticksSinceLast++;
         //CALLED EVERY TICK
+        //level.addParticle(, blockPos.getX(), blockPos.getX(), blockPos.getX(), 5, 5, 5 );
     }
 
     @Override

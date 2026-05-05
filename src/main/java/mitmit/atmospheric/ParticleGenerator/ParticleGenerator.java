@@ -58,6 +58,7 @@ public class ParticleGenerator extends BaseEntityBlock {
             player.openMenu(particleGeneratorEntity);
             level.playSound(player, pos, SoundEvents.BAMBOO_WOOD_BUTTON_CLICK_OFF, SoundSource.BLOCKS, 1.0F, 1.0F);
             //level.setBlockAndUpdate(pos, state.setValue(ACTIVATED, !state.getValue(ACTIVATED)));
+            return InteractionResult.SUCCESS;
         }
         return InteractionResult.PASS;
     }
