@@ -1,10 +1,10 @@
 package mitmit.atmospheric.client;
 
 import mitmit.atmospheric.ParticleGenerator.ParticleGeneratorMenu;
+import mitmit.atmospheric.client.Widgets.CustomSelectionList;
+import mitmit.atmospheric.client.Widgets.CustomSlider;
 import net.minecraft.client.gui.GuiGraphicsExtractor;
-import net.minecraft.client.gui.components.Button;
-import net.minecraft.client.gui.components.CycleButton;
-import net.minecraft.client.gui.components.EditBox;
+import net.minecraft.client.gui.components.*;
 import net.minecraft.client.gui.components.toasts.SystemToast;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.renderer.RenderPipelines;
@@ -14,31 +14,48 @@ import net.minecraft.world.entity.player.Inventory;
 
 public class ParticleGeneratorScreen extends AbstractContainerScreen<ParticleGeneratorMenu> {
     private static final Identifier CONTAINER_TEXTURE = Identifier.fromNamespaceAndPath("atmospheric","textures/gui/demo_background.png");
+
     String textEntered = "default";
+    Boolean checked = true;
+    double sliderValue = 0.5;
 
     public ParticleGeneratorScreen(ParticleGeneratorMenu abstractContainerMenu, Inventory inventory, Component component) {
         super(abstractContainerMenu, inventory, component);
         this.titleLabelY = 100000;
         this.inventoryLabelY = 100000;
 
-        Button buttonWidget = Button.builder(Component.literal("Hello World"), (btn) -> {
+        CustomSelectionList list = new CustomSelectionList(this.minecraft, 225, 45, 0, 10);
+        list.setPosition(20, 100);
+        list.addEntry("option 1");
+        list.addEntry("option 2");
+        list.addEntry("option 3");
+        list.addEntry("option 4");
+        this.addRenderableWidget(list);
+
+        Button buttonWidget = Button.builder(Component.literal("Selection List"), (btn) -> {
             this.minecraft.getToastManager().addToast(
-                    SystemToast.multiline(this.minecraft, SystemToast.SystemToastId.NARRATOR_TOGGLE, Component.nullToEmpty("Relay Text"), Component.nullToEmpty(textEntered))
+                    SystemToast.multiline(this.minecraft, SystemToast.SystemToastId.NARRATOR_TOGGLE, Component.nullToEmpty("Selection:"), Component.nullToEmpty(list.getSelectedEntry()))
             );
         }).bounds(20, 20, 80, 20).build();
-        // x, y, width, height
-        // It's recommended to use the fixed height of 20 to prevent rendering issues with the button
-        // textures.
-
-        EditBox textField = new EditBox(this.getFont(), 20, 40, 80, 20, Component.empty());
-        textField.setValue(textEntered);
-        textField.setResponder(text -> {
-            this.textEntered = text;
-        });
-
-        // Register the button widget.
         this.addRenderableWidget(buttonWidget);
-        this.addRenderableWidget(textField);
+
+//        EditBox textField = new EditBox(this.getFont(), 20, 50, 80, 20, Component.empty());
+//        textField.setValue(textEntered);
+//        textField.setResponder(text -> {
+//            this.textEntered = text;
+//        });
+//        this.addRenderableWidget(textField);
+//
+//        Checkbox check = Checkbox.builder(Component.literal("Checkbox"), this.getFont()).onValueChange((checkbox, value) -> {
+//            checked = value;
+//            this.minecraft.getToastManager().addToast(
+//                    SystemToast.multiline(this.minecraft, SystemToast.SystemToastId.NARRATOR_TOGGLE, Component.nullToEmpty("Checkbox State"), Component.nullToEmpty(checked.toString()))
+//            );
+//        }).pos(20, 80).selected(checked).build();
+//        this.addRenderableWidget(check);
+//
+//        CustomSlider slider = new CustomSlider(20, 110, 120, 20, Component.literal("Slider"), sliderValue, 10, 15, false);
+//        this.addRenderableWidget(slider);
     }
 
     @Override
