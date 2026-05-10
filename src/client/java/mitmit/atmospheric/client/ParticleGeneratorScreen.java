@@ -24,12 +24,15 @@ public class ParticleGeneratorScreen extends AbstractContainerScreen<ParticleGen
         this.titleLabelY = 100000;
         this.inventoryLabelY = 100000;
 
-        CustomSelectionList list = new CustomSelectionList(this.minecraft, 225, 45, 0, 10);
+        CustomSelectionList list = new CustomSelectionList(this.minecraft, 120, 45, 0, 14);
         list.setPosition(20, 100);
         list.addEntry("option 1");
         list.addEntry("option 2");
         list.addEntry("option 3");
         list.addEntry("option 4");
+        list.addEntry("option 5");
+        list.addEntry("option 6");
+        list.addEntry("option 7");
         this.addRenderableWidget(list);
 
         Button buttonWidget = Button.builder(Component.literal("Selection List"), (btn) -> {

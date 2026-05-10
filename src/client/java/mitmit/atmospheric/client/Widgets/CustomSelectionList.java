@@ -4,12 +4,15 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.components.ObjectSelectionList;
 import net.minecraft.client.input.MouseButtonEvent;
+import net.minecraft.client.renderer.RenderPipelines;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.Identifier;
 import org.jspecify.annotations.Nullable;
 
 public class CustomSelectionList extends ObjectSelectionList<CustomSelectionList.Entry> {
     public CustomSelectionList(Minecraft minecraft, int width, int height, int y, int defaultEntryHeight) {
         super(minecraft, width, height, y, defaultEntryHeight);
+        setScrollAmount(10);
     }
 
     public void addEntry(String name) {
@@ -23,6 +26,7 @@ public class CustomSelectionList extends ObjectSelectionList<CustomSelectionList
     }
 
     public static class Entry extends ObjectSelectionList.Entry<Entry> {
+        private static final Identifier ENTRY_TEXTURE = Identifier.fromNamespaceAndPath("", "");
         private final CustomSelectionList list;
         public final String name;
 
@@ -39,12 +43,26 @@ public class CustomSelectionList extends ObjectSelectionList<CustomSelectionList
 
         @Override
         public Component getNarration() {
-            return Component.empty();
+            return Component.literal(this.name);
         }
 
         @Override
         public void extractContent(GuiGraphicsExtractor graphics, int mouseX, int mouseY, boolean hovered, float a) {
-            graphics.text(Minecraft.getInstance().font, name, 15, Minecraft.getInstance().font.lineHeight, 0xFFFFFF, true);
+            graphics.blit(RenderPipelines.GUI_TEXTURED,
+                    ENTRY_TEXTURE,
+                    this.getContentX() + 4,
+                    this.getContentY() + 2,
+                    this.getContentWidth() - 8,
+                    this.getContentHeight() - 4,
+                    12,
+                    12,
+                    12,
+                    12,
+                    0xFFFFFFFF);
+
+            int p = (list.width - this.name.length()) / 2;
+            int q = this.getContentY() + (this.getContentHeight() - Minecraft.getInstance().font.lineHeight) / 2 + 1;
+            graphics.text(Minecraft.getInstance().font, this.name, p, q, 0xFFFFFFFF, true);
         }
     }
 }
